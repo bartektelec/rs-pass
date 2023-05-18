@@ -132,12 +132,8 @@ fn add_entry(store: &mut JSONFile, private_key: &Cipher, path: &str) {
     io::stdin().read_line(&mut input_pass).unwrap();
 
     let encoded_pass = private_key.cbc_encrypt(IV, input_pass.trim().to_string().as_bytes());
-
-    println!("{:?}", encoded_pass);
-
     let pass: String = encoded_pass.iter().map(|b| *b as char).collect();
 
-    println!("{:?}", pass);
     let new_entry = PasswordEntry {
         name: input_name.trim().to_string(),
         username: input_user.trim().to_string(),
